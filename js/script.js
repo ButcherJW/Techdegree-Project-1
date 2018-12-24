@@ -49,7 +49,31 @@ FSJS project 1 - A Random Quote Generator
   comment.
 ***/
 
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
 // Remember to delete the comments that came with this file, and replace them with your own code comments.
+
+var quotes = ["'Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.'"];
+var source = [" - Patrick McKenzie"];
+var citation = [];
+var year = [];
+
+function getRandomQuote(array){
+
+}
+
+function printQuote(){
+  var quote = getRandomQuote();
+  var message = "<p class = \"quote\"> ";
+  message += quote;
+  message += "</p>";
+  message += "<p class = \"source\"> ";
+  message += source;
+  message += "<span class =\"citation\"> ";
+  message += citation;
+  message += "/span";
+  message += "<span class = \"year\"> ";
+  message += year;
+  message += "</span>";
+  message += "/p>";
+
+  document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+}

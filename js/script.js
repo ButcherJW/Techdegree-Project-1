@@ -62,18 +62,12 @@ function getRandomQuote(array){
 
 function printQuote(){
   var quote = getRandomQuote();
-  var message = "<p class = \"quote\"> ";
-  message += quote;
-  message += "</p>";
-  message += "<p class = \"source\"> ";
-  message += source;
-  message += "<span class =\"citation\"> ";
-  message += citation;
-  message += "/span";
-  message += "<span class = \"year\"> ";
-  message += year;
-  message += "</span>";
-  message += "/p>";
+  var message = `
+  <p class = "quote">${quote}</p>
+  <p class = "source">${source}
+    <span class ="citation">${citation}/span
+    <span class = "year">${year}</span>
+  </p>`;
 
   document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 }

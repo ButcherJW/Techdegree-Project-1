@@ -5,19 +5,19 @@ FSJS project 1 - A Random Quote Generator
 
 // Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
 
+/* VARIABLE DECLARATION SECTION */
 
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-
-  Recommended: 
-    - Add at least one `year` and/or `citation` property to at least one 
-      quote object.
-***/
-
-
-
+const quotes = [
+  {quote: 'To live is the rarest thing in the world. Most people exist, that is all.', source: 'Oscar Wilde'},
+  {quote: 'That\'s why they call it the American Dream, because you have to be asleep to believe it.', source: 'George Carlin'},
+  {quote: 'Before you judge a man, walk a mile in his shoes. After that who cares?... He’s a mile away and you’ve got his shoes!', source: 'Billy Connolly'},
+  {quote: 'People say nothing is impossible, but I do nothing every day', source: 'A. A. Milne'},
+  {quote: 'Light travels faster than sound. This is why some people appear bright until you hear them speak.', source: 'Alan Dundes'},
+  {quote: 'Men marry women with the hope they will never change. Women marry men with the hope they will change. Invariably they are both disappointed.', source: 'Albert Einstein'},
+  {quote: 'Life was like a box of chocolates. You neven know whate you\'re gonna get.', source: 'Tom Hanks', citation: 'Forest Gump', year: '1994'},
+  {quote: 'No, I am your father', source: 'Darth Vader', citation: 'Star Wars Episode 5 - The Empire Strikes Back', year: '1980'},
+  {quote: 'Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.', source: 'Patrick McKenzie'},
+]
 
 /***
   Create the `getRandomQuote` function to:
@@ -26,30 +26,54 @@ FSJS project 1 - A Random Quote Generator
      `quotes` array.
 ***/
 
+/* FUNCTION DECLARATION SECTION */
 
-
-
-/***
-  Create the `printQuote` function to: 
-   - call the `getRandomQuote` function and assign it to a variable.
-   - use the properties of the quote object stored in the variable to 
-     create your HTML string.
-   - use conditionals to make sure the optional properties exist before 
-     they are added to the HTML string.
-   - set the `innerHTML` of the `quote-box` div to the HTML string. 
+/*** 
+  The getRandomQuote function;
+  1. Generates a random number.
+  2. Obtains a quote from the quotes object using the random number generated in step 1 above.
+  3. Returns the quote to the printQuote calling function.
 ***/
 
-
-
+function getRandomQuote () {
+  randomNumber = Math.floor(Math.random() * quotes.length + 1);
+  var randomQuote = quotes[randomNumber - 1];  // 1 is substracted from randomNumber because the first element in the quotes object array has a refernce of 0
+  return randomQuote;
+}
 
 /***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
-  comment.
+  The PrintQuote function;
+  1. Invoke the getRandomQuote function to obatain a random quote.
+  2. Add the quote and source ojbect properties to the HTML output array.
+  3. Check to see if the object contains a citation property and add it to the HTML array if it does.
+  4. Check to see if the object contains a year property and add it to the HTML output array if it does.
+  5. Output the HTML array to the quote-box section on the main HTML page.
 ***/
+function printQuote(){
+  var myQuote = getRandomQuote();
+  var HTML = '';
 
+  HTML += `<p class="quote">${myQuote.quote}</p>
+          <p class="source">${myQuote.source}</p>`;
+
+  if(typeof(myQuote.citation) !== "undefined") {
+    HTML += `<span class="citation">${myQuote.citation}</span>`;
+  }
+  
+  if(typeof(myQuote.year) !== "undefined") {
+    HTML += `<span class="year">${myQuote.year}</span>`;
+  }
+
+  HTML += `</p>`;
+
+  document.getElementById("quote-box").innerHTML = HTML;
+}
+
+
+/* MAIN SECTION */
+
+/*** 
+  Clicking the "Show another quote" button on the main index page triggers 
+  the even listener below which will in turn invoke the 'printQuote' function.
+***/
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.

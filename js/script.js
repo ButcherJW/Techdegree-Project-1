@@ -70,11 +70,13 @@ function printQuote(){
   // Determine if quote object has a citation property.  If it does then add it to the HTML output array
   if(typeof(myQuote.citation) !== "undefined") {
     HTML += `<span class="citation">${myQuote.citation}</span>`;
-  }  
+  }
+  
   // Determine if quote object has a citation property.  If it does then add it to the HTML output array
   if(typeof(myQuote.year) !== "undefined") {
     HTML += `<span class="year">${myQuote.year}</span>`;
   }
+
   HTML += `</p>`;  // citation and year paragraph closing 
 
   document.getElementById("quote-box").innerHTML = HTML;  // update the quote-box div on the main HTML page

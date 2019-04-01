@@ -65,10 +65,8 @@ function printQuote(){
   
   // Add the quote and quote source paragraphs to the HTML output
   HTML = `<p class="quote" id="quote">${myQuote.quote}</p>
-          <p class="source">${myQuote.source}</p>`;
+          <p class="source">${myQuote.source}`;
 
-  
-  HTML += `<p>`;  // citation and year paragraph opening
   // Determine if quote object has a citation property.  If it does then add it to the HTML output array
   if(typeof(myQuote.citation) !== "undefined") {
     HTML += `<span class="citation">${myQuote.citation}</span>`;

@@ -3,10 +3,11 @@ Treehouse Techdegree:
 FSJS project 1 - A Random Quote Generator
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
+/************************************/
+/*** VARIABLE DECLARATION SECTION ***/
+/************************************/
 
-/* VARIABLE DECLARATION SECTION */
-
+// The quotes object aray (also name of the constant) contains all the quotes and their sources.  Some also contain citation and year.
 const quotes = [
   {quote: 'To live is the rarest thing in the world. Most people exist, that is all.', source: 'Oscar Wilde'},
   {quote: 'That\'s why they call it the American Dream, because you have to be asleep to believe it.', source: 'George Carlin'},
@@ -17,16 +18,19 @@ const quotes = [
   {quote: 'Life was like a box of chocolates. You neven know whate you\'re gonna get.', source: 'Tom Hanks', citation: 'Forest Gump', year: '1994'},
   {quote: 'No, I am your father', source: 'Darth Vader', citation: 'Star Wars Episode 5 - The Empire Strikes Back', year: '1980'},
   {quote: 'Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.', source: 'Patrick McKenzie'},
+  {quote: 'You are not entitled to your opinion. You are entitled to your informed opinion. No one is entitled to be ignorant.', source: 'Harlan Ellison'},
+  {quote: 'An intellectual is someone whose mind watches itself.', source: 'Albert Camus'},
+  {quote: 'Genius is talent set on fire by courage.', source: 'Henry Van Dyke'},
+  {quote: 'I not only use all the brains that I have, but all that I can borrow.', source: 'Woodrow Wilson'},
+  {quote: 'Talent hits a target no one else can hit. Genius hits a target no one else can see.', source: 'Arthur Schopenhauer'},
+  {quote: 'I know that I am intelligent, because I know that I know nothing.', source: 'Socrates'},
+  {quote: 'You\'re gonna need a bigger boat.', source: 'SocMartin Brody', citation: 'Jaws', year: '1975'},
+  {quote: 'An escalator can never break: it can only become stairs.', source: 'Mitch Hedberg'},
 ]
 
-/***
-  Create the `getRandomQuote` function to:
-   - generate a random number 
-   - use the random number to `return` a random quote object from the 
-     `quotes` array.
-***/
-
-/* FUNCTION DECLARATION SECTION */
+/************************************/
+/*** FUNCTION DECLARATION SECTION ***/
+/************************************/
 
 /*** 
   The getRandomQuote function;
@@ -34,7 +38,6 @@ const quotes = [
   2. Obtains a quote from the quotes object using the random number generated in step 1 above.
   3. Returns the quote to the printQuote calling function.
 ***/
-
 function getRandomQuote () {
   const randomNumber = (Math.floor(Math.random() * quotes.length + 1) - 1);  // 1 is substracted because the first element in the quotes object array has a refence of 0
   const randomQuote = quotes[randomNumber];  
@@ -45,31 +48,43 @@ function getRandomQuote () {
   The PrintQuote function;
   1. Invoke the getRandomQuote function to obatain a random quote.
   2. Add the quote and source ojbect properties to the HTML output array.
-  3. Check to see if the object contains a citation property and add it to the HTML array if it does.
-  4. Check to see if the object contains a year property and add it to the HTML output array if it does.
+  3. Determine if the quote object contains a citation property and add it to the HTML array if it does.
+  4. Determine if the quote object contains a year property and add it to the HTML output array if it does.
   5. Output the HTML array to the quote-box section on the main HTML page.
 ***/
 function printQuote(){
-  var myQuote = getRandomQuote();  // obtain the random quote
-  
-  HTML = `<p class="quote">${myQuote.quote}</p>
-          <p class="source">${myQuote.source}</p>`;
+  var myQuote = getRandomQuote();  // obtain the random quote from the quotes array
 
-  if(typeof(myQuote.citation) !== "undefined") {
-    HTML += `<span class="citation">${myQuote.citation}</span>`;
+  // Determine if a previous quote already exist.  If one does and if it's the same as the new one then generate another one.  Keep checking until the new one is unique.
+  if(document.getElementById("quote") != null) {
+    var previousQuote = document.getElementById("quote").innerText;
+    while(myQuote.quote === previousQuote) {
+      myQuote = getRandomQuote();
+    }
   }
   
+  // Add the quote and quote source paragraphs to the HTML output
+  HTML = `<p class="quote" id="quote">${myQuote.quote}</p>
+          <p class="source">${myQuote.source}</p>`;
+
+  
+  HTML += `<p>`;  // citation and year paragraph opening
+  // Determine if quote object has a citation property.  If it does then add it to the HTML output array
+  if(typeof(myQuote.citation) !== "undefined") {
+    HTML += `<span class="citation">${myQuote.citation}</span>`;
+  }  
+  // Determine if quote object has a citation property.  If it does then add it to the HTML output array
   if(typeof(myQuote.year) !== "undefined") {
     HTML += `<span class="year">${myQuote.year}</span>`;
   }
-
-  HTML += `</p>`;
+  HTML += `</p>`;  // citation and year paragraph closing 
 
   document.getElementById("quote-box").innerHTML = HTML;  // update the quote-box div on the main HTML page
 }
 
-
-/* MAIN SECTION */
+/********************/
+/*** MAIN SECTION ***/
+/********************/
 
 /*** 
   Clicking the "Show another quote" button on the main index page triggers 

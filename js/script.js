@@ -36,8 +36,8 @@ const quotes = [
 ***/
 
 function getRandomQuote () {
-  randomNumber = (Math.floor(Math.random() * quotes.length + 1) - 1);  // 1 is substracted because the first element in the quotes object array has a refence of 0
-  var randomQuote = quotes[randomNumber];  
+  const randomNumber = (Math.floor(Math.random() * quotes.length + 1) - 1);  // 1 is substracted because the first element in the quotes object array has a refence of 0
+  const randomQuote = quotes[randomNumber];  
   return randomQuote;
 }
 
@@ -50,7 +50,7 @@ function getRandomQuote () {
   5. Output the HTML array to the quote-box section on the main HTML page.
 ***/
 function printQuote(){
-  var myQuote = getRandomQuote();
+  const myQuote = getRandomQuote();  // obtain the random quote
   var HTML = '';
 
   HTML += `<p class="quote">${myQuote.quote}</p>
@@ -66,7 +66,7 @@ function printQuote(){
 
   HTML += `</p>`;
 
-  document.getElementById("quote-box").innerHTML = HTML;
+  document.getElementById("quote-box").innerHTML = HTML;  // update the quote-box div on the main HTML page
 }
 
 
@@ -76,4 +76,4 @@ function printQuote(){
   Clicking the "Show another quote" button on the main index page triggers 
   the even listener below which will in turn invoke the 'printQuote' function.
 ***/
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);  // add a click event listener which will invoke the printQuote function to the loadQuote button on that main HTML page

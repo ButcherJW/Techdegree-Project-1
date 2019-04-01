@@ -91,11 +91,11 @@ body {
 }
 
 #loadQuote {
-  left: 35%;
+  left: 30%;
 }
 
 #autoRefresh {
-  left: 55%;
+  left: 60%;
 }
 
 @media (max-width: 420px) {

@@ -36,8 +36,8 @@ const quotes = [
 ***/
 
 function getRandomQuote () {
-  randomNumber = Math.floor(Math.random() * quotes.length + 1);
-  var randomQuote = quotes[randomNumber - 1];  // 1 is substracted from randomNumber because the first element in the quotes object array has a refernce of 0
+  randomNumber = (Math.floor(Math.random() * quotes.length + 1) - 1);  // 1 is substracted because the first element in the quotes object array has a refence of 0
+  var randomQuote = quotes[randomNumber];  
   return randomQuote;
 }
 

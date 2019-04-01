@@ -69,7 +69,6 @@ body {
 }
 
 .button {
-  position: fixed;
   width: 12em;
   display: inline-block;
   bottom: 150px;
@@ -79,7 +78,6 @@ body {
   background-color: #36b55c;
   padding: 15px 0;
   transition: .5s ;
-  margin: 10px;
 }
 
 .button:hover {
@@ -92,10 +90,12 @@ body {
 
 #loadQuote {
   left: 30%;
+  margin: 300px 0px 100px 500px;
 }
 
 #autoRefresh {
   left: 60%;
+  margin: 300px 0px 100px 50px;
 }
 
 @media (max-width: 420px) {

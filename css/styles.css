@@ -68,7 +68,7 @@ body {
   font-style: normal;
 }
 
-#loadQuote {
+.button {
   position: fixed;
   width: 12em;
   display: inline-block;
@@ -82,12 +82,21 @@ body {
   padding: 15px 0;
   transition: .5s ;
 }
-#loadQuote:hover {
+
+.button:hover {
   background-color: rgba(255,255,255,.25);
 }
 
-#loadQuote:focus {
+.button:focus {
   outline: none;
+}
+
+#loadQuote {
+  left: 43%;
+}
+
+#autoRefresh {
+  left: 58%;
 }
 
 @media (max-width: 420px) {

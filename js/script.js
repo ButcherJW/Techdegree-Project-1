@@ -50,10 +50,9 @@ function getRandomQuote () {
   5. Output the HTML array to the quote-box section on the main HTML page.
 ***/
 function printQuote(){
-  const myQuote = getRandomQuote();  // obtain the random quote
-  var HTML = '';
-
-  HTML += `<p class="quote">${myQuote.quote}</p>
+  var myQuote = getRandomQuote();  // obtain the random quote
+  
+  HTML = `<p class="quote">${myQuote.quote}</p>
           <p class="source">${myQuote.source}</p>`;
 
   if(typeof(myQuote.citation) !== "undefined") {

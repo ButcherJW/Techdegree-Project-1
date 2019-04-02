@@ -1,6 +1,8 @@
 /* Random Quote Generator Styles */
 
 body {
+  margin-top: 0;
+  padding: 0;
   background-color: #36b55c;
   color: white;
   font-family: 'Playfair Display', serif;
@@ -69,16 +71,19 @@ body {
 }
 
 .buttons {
-  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  font-size: 15px;
+  font-weight: bold;
+  top: 85%;
+  left: 10%;
+  right: 10%;
+  width: 80%;
 }
 
 .button {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: bold;
   padding: 10px 20px;  /* padding is for inside the element. values specified are for top (bottom will be the same) and right (left will be the same) */
   margin: 10px; /* margin is for the outside of the element */
-  display: inline-block;
   color: #000000;
   transition: .1s ;
   box-shadow: 3px 5px 10px rgba(0,0,0,0.5);
@@ -99,14 +104,6 @@ body {
 
 .button:focus {
   outline: none;
-}
-
-#loadQuote {
-  margin: 500px 0px 20px 200px;
-}
-
-#autoRefresh {
-  margin: 0px 20px 20px 20px;
 }
 
 @media (max-width: 420px) {

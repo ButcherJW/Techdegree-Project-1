@@ -28,6 +28,8 @@ const quotes = [
   {quote: 'An escalator can never break: it can only become stairs.', source: 'Mitch Hedberg'},
 ]
 
+var autoRefresh;
+
 /************************************/
 /*** FUNCTION DECLARATION SECTION ***/
 /************************************/
@@ -99,6 +101,16 @@ function printQuote(){
   document.getElementById("quote-box").innerHTML = HTML;  // update the quote-box div on the main HTML page
 }
 
+function autoRefresh() {
+  autoRefresh = setInterval(() => {
+    printQuote();
+  }, 5000);
+}
+
+function cancelRefresh() {
+  clearInterval(autoRefresh);
+}
+
 /********************/
 /*** MAIN SECTION ***/
 /********************/
@@ -107,4 +119,6 @@ function printQuote(){
   Clicking the "Show another quote" button on the main index page triggers 
   the even listener below which will in turn invoke the 'printQuote' function.
 ***/
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);  // add a click event listener which will invoke the printQuote function to the loadQuote button on that main HTML page
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);  // a click event listener which will invoke the printQuote function to the loadQuote button on that main HTML page
+document.getElementById('autoRefresh').addEventListener("click", autoRefresh, false);
+document.getElementById('cancelRefresh').addEventListener("click", cancelRefresh, false);

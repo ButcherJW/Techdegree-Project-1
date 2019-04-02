@@ -96,7 +96,6 @@ function printQuote(){
   HTML += `</p>`;  // source paragraph closing
 
   document.body.style.backgroundColor = randomColor();
-
   document.getElementById("quote-box").innerHTML = HTML;  // update the quote-box div on the main HTML page
 }
 

@@ -98,17 +98,21 @@ function printQuote(){
   HTML += `</p>`;  // source paragraph closing
 
   document.body.style.backgroundColor = randomColor();
-  document.getElementById("quote-box").innerHTML = HTML;  // update the quote-box div on the main HTML page
+  document.getElementById('quote-box').innerHTML = HTML;  // update the quote-box div on the main HTML page
 }
 
 function autoRefresh() {
   autoRefresh = setInterval(() => {
     printQuote();
   }, 5000);
+
+  document.getElementById('autoRefresh').innerText = 'Disable Auto Refresh';
+  document.getElementById('autoRefresh').addEventListener('click', cancelRefresh, false);
 }
 
 function cancelRefresh() {
   clearInterval(autoRefresh);
+  document.getElementById("autoRefresh").innerText = 'Enable Auto Refresh';
 }
 
 /********************/
@@ -119,6 +123,6 @@ function cancelRefresh() {
   Clicking the "Show another quote" button on the main index page triggers 
   the even listener below which will in turn invoke the 'printQuote' function.
 ***/
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);  // a click event listener which will invoke the printQuote function to the loadQuote button on that main HTML page
-document.getElementById('autoRefresh').addEventListener("click", autoRefresh, false);
-document.getElementById('cancelRefresh').addEventListener("click", cancelRefresh, false);
+document.getElementById('loadQuote').addEventListener('click', printQuote, false);  // a click event listener which will invoke the printQuote function to the loadQuote button on that main HTML page
+document.getElementById('autoRefresh').addEventListener('click', autoRefresh, false);
+document.getElementById('cancelRefresh').addEventListener('click', cancelRefresh, false);

@@ -28,7 +28,9 @@ const quotes = [
   {quote: 'An escalator can never break: it can only become stairs.', source: 'Mitch Hedberg'},
 ]
 
-var autoRefresh;
+const loadQuoteBtn = document.getElementById('loadQuoteBtn');
+const enaAutoRefreshBtn = document.getElementById('enaAutoRefreshBtn');
+const disAutoRefreshBtn = document.getElementById('disAutoRefreshBtn');
 
 /************************************/
 /*** FUNCTION DECLARATION SECTION ***/
@@ -101,18 +103,43 @@ function printQuote(){
   document.getElementById('quote-box').innerHTML = HTML;  // update the quote-box div on the main HTML page
 }
 
+var disableEnableBtns = (disableBtn, enableBtn) => {
+  disableBtn.disabled = true;
+  disableBtn.style.boxShadow = '0px 0px 0px 0px';
+  disableBtn.style.background = '#adadad';
+  disableBtn.style.cursor = 'default';
+
+  enableBtn.disabled = false;
+  enableBtn.style.boxShadow = '3px 5px 10px rgba(0,0,0,0.5)';
+  enableBtn.style.background = 'webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f5f5f5), color-stop(1, #adadad))';
+  enableBtn.style.background = '-moz-linear-gradient(center top, #f5f5f5 5%, #adadad 100%)';
+  enableBtn.style.cursor = 'pointer';
+}
+
 function autoRefresh() {
   autoRefresh = setInterval(() => {
     printQuote();
   }, 5000);
 
-  document.getElementById('autoRefresh').innerText = 'Disable Auto Refresh';
-  document.getElementById('autoRefresh').addEventListener('click', cancelRefresh, false);
+  disableEnableBtns(enaAutoRefreshBtn, disAutoRefreshBtn);
+
+  //enaAutoRefreshBtn.disabled = true;
+  //enaAutoRefreshBtn.style.boxShadow = '0px 0px 0px 0px';
+  //enaAutoRefreshBtn.style.background = '#adadad';
+  //enaAutoRefreshBtn.style.cursor = 'default';
+  //cancelRefresh.disabled = false;
 }
 
 function cancelRefresh() {
   clearInterval(autoRefresh);
-  document.getElementById("autoRefresh").innerText = 'Enable Auto Refresh';
+
+  disableEnableBtns(disAutoRefreshBtn, enaAutoRefreshBtn);
+  
+  //disAutoRefreshBtn.disabled = true;
+  //disAutoRefreshBtn.style.boxShadow = '0px 0px 0px 0px';
+  //disAutoRefreshBtn.style.background = '#adadad';
+  //disAutoRefreshBtn.style.cursor = 'default';
+  //enaAutoRefreshBtn.disabled = false;
 }
 
 /********************/
@@ -123,6 +150,7 @@ function cancelRefresh() {
   Clicking the "Show another quote" button on the main index page triggers 
   the even listener below which will in turn invoke the 'printQuote' function.
 ***/
-document.getElementById('loadQuote').addEventListener('click', printQuote, false);  // a click event listener which will invoke the printQuote function to the loadQuote button on that main HTML page
-document.getElementById('autoRefresh').addEventListener('click', autoRefresh, false);
-document.getElementById('cancelRefresh').addEventListener('click', cancelRefresh, false);
+disableEnableBtns(disAutoRefreshBtn, enaAutoRefreshBtn);
+loadQuoteBtn.addEventListener('click', printQuote, false);  // a click event listener which will invoke the printQuote function to the loadQuote button on that main HTML page
+enaAutoRefreshBtn.addEventListener('click', autoRefresh, false);
+disAutoRefreshBtn.addEventListener('click', cancelRefresh, false);

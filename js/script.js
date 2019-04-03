@@ -7,14 +7,14 @@ FSJS project 1 - A Random Quote Generator
 /*** VARIABLE DECLARATION SECTION ***/
 /************************************/
 
-// The quotes object aray (also name of the constant) contains all the quotes and their sources.  Some also contain citation and year.
+// The quotes object array (also name of the constant) contains all the quotes and their sources.  Some also contain citation and year.
 const quotes = [
   {quote: 'To live is the rarest thing in the world. Most people exist, that is all.', source: 'Oscar Wilde'},
   {quote: 'That\'s why they call it the American Dream, because you have to be asleep to believe it.', source: 'George Carlin'},
-  {quote: 'Before you judge a man, walk a mile in his shoes. After that who cares?... He’s a mile away and you’ve got his shoes!', source: 'Billy Connolly', tags: 'humor'},
-  {quote: 'People say nothing is impossible, but I do nothing every day', source: 'A. A. Milne', tags: 'humor'},
-  {quote: 'Light travels faster than sound. This is why some people appear bright until you hear them speak.', source: 'Alan Dundes', tags: 'humor'},
-  {quote: 'Men marry women with the hope they will never change. Women marry men with the hope they will change. Invariably they are both disappointed.', source: 'Albert Einstein'},
+  {quote: 'Before you judge a man, walk a mile in his shoes. After that who cares?... He’s a mile away and you’ve got his shoes!', source: 'Billy Connolly', tags: 'Humor'},
+  {quote: 'People say nothing is impossible, but I do nothing every day', source: 'A. A. Milne', tags: 'Humor'},
+  {quote: 'Light travels faster than sound. This is why some people appear bright until you hear them speak.', source: 'Alan Dundes', tags: 'Humor'},
+  {quote: 'Men marry women with the hope they will never change. Women marry men with the hope they will change. Invariably they are both disappointed.', source: 'Albert Einstein', tags: 'Humor'},
   {quote: 'Life was like a box of chocolates. You neven know whate you\'re gonna get.', source: 'Tom Hanks', citation: 'Forest Gump', year: '1994', tags: 'Movies'},
   {quote: 'No, I am your father', source: 'Darth Vader', citation: 'Star Wars Episode 5 - The Empire Strikes Back', year: '1980', tags: 'Movies'},
   {quote: 'Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.', source: 'Patrick McKenzie'},
@@ -52,7 +52,7 @@ function getRandomQuote () {
 }
 
 
-/*** The RandomRG function generates a random number which will be used by the folowing function to generate a random color ***/
+/*** The RandomRG function generates a random number which will be used by the following function to generate a random color ***/
 function randomRGB() {
   return Math.floor(Math.random() * 256);
 }
@@ -70,7 +70,7 @@ function randomColor() {
   The printQuote function;
   1. Is called when the the loadQuoteBtn and enaAutoRefreshBtn buttons are clicked.
   2. Invoke the getRandomQuote function to obtain a new random quote.
-  3. Add the quote and source ojbect properties to the HTML output array.
+  3. Add the quote and source object properties to the HTML output array.
   4. Determine if the quote object contains a citation property and if so adds it to the HTML array.
   5. Determine if the quote object contains a year property and if so adds it to the HTML output array.
   6. Output the HTML array to the quote-box section on the main HTML page.
@@ -79,7 +79,7 @@ function printQuote(){
   var rgbColor;
   var myQuote = getRandomQuote();  // obtain the random quote from the quotes array
 
-  // etermine if a previous quote already exist.  If one does and if it's the same as the new one then generate another one.  Keep checking until the new one is unique.
+  // Determine if a previous quote already exist.  If one does and if it's the same as the new one, then generate another one.  Keep checking until the new one is unique.
   if(document.getElementById("quote") != null) {
     var previousQuote = document.getElementById("quote").innerText;
     while(myQuote.quote === previousQuote) {
@@ -91,15 +91,9 @@ function printQuote(){
   HTML = `<p class="quote" id="quote">${myQuote.quote}</p>
           <p class="source">${myQuote.source}`;
 
-  // Determine if quote object has a citation property. If it does then add it to the HTML output array.
-  if(myQuote.citation) {
-    HTML += `<span class="citation">${myQuote.citation}</span>`;
-  }
-
-  // Determine if quote object has a citation property. If it does then add it to the HTML output array.
-  if(myQuote.year) {
-    HTML += `<span class="year">${myQuote.year}</span>`;
-  }
+  if(myQuote.citation) {HTML += `<span class="citation">${myQuote.citation}</span>`}  // determine if quote object has a citation property and if so add it to the HTML output array.
+  if(myQuote.year) {HTML += `<span class="year">${myQuote.year}</span>`}  // determine if quote object has a citation property and if so add it to the HTML output array.
+  if(myQuote.tags) {HTML += `<span class="tags">${myQuote.tags}</span>`}  // determine if the quote object contain tags and if so add it to the HTML output array.
 
   HTML += `</p>`;  // source paragraph closing
 
@@ -125,12 +119,13 @@ function disableEnableBtns(disableBtn, enableBtn) {
   // Enable the second button passed and make it look disabled
   enableBtn.disabled = false;
   enableBtn.style.boxShadow = '3px 5px 10px rgba(0,0,0,0.5)';
-  enableBtn.style.background = 'webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f5f5f5), color-stop(1, #adadad))';
+  enableBtn.style.background = '-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f5f5f5), color-stop(1, #adadad))';
   enableBtn.style.background = '-moz-linear-gradient(center top, #f5f5f5 5%, #adadad 100%)';
   enableBtn.style.cursor = 'pointer';
 }
 
-/* The enaAutoRefresh function:
+/*
+  The enaAutoRefresh function:
   1. Is called by the enaAutoRefreshBtn when clicked.
   2. Calls the printQuote function every 5 seconds to generate a new quote and change the page background.
   3. Disables the eneAutoRefreshBtn and enables the disAutoRefreshBtn buttons.
@@ -143,7 +138,8 @@ function enaAutoRefresh() {
   disableEnableBtns(enaAutoRefreshBtn, disAutoRefreshBtn);
 }
 
-/* The disAutoRefresh function:
+/* 
+  The disAutoRefresh function:
   1. Is called by the disAutoRefreshBtn when clicked.
   2. Clears (cancels) the auto refresh interval which in turn disables the automatic quote generation.
   3. Disables the disAutoRefreshBtn and enables the enaAutoRefreshBtn buttons.
@@ -162,11 +158,9 @@ function disAutoRefresh() {
   1.  Disables the disAutoRefreshBtn during the initial page load.  
   2.  Adds a click event listener to the loadQuoteBtn which will invoke the printQuote function.
   3.  Adds a click event listener to the enaAutoRefreshBtn which will invoke the enaAutoRefresh function.  
-      This will start the auto quote refresh every 5 seconds, disbale the enaAutoRefresh and enable the disAutoRefreshBtn buttons respectively.
-  2.  Adds a click event listener to the disAutoRefreshBtn which will invoke the disAutoRefresh function.  
+      This will start the auto quote refresh every 5 seconds, disable the enaAutoRefresh and enable the disAutoRefreshBtn buttons respectively.
+  4.  Adds a click event listener to the disAutoRefreshBtn which will invoke the disAutoRefresh function.  
       This will stop the auto quote refresh every, disable the disAutoRefresh and enable the enaAutoRefreshBtn buttons respectively.
-Clicking the "Show another quote" button on the main index page triggers 
-  the even listener below which will in turn invoke the 'printQuote' function.
 */
 disableEnableBtns(disAutoRefreshBtn, enaAutoRefreshBtn);  // 
 loadQuoteBtn.addEventListener('click', printQuote, false);

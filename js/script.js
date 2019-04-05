@@ -162,7 +162,8 @@ function disAutoRefresh() {
   4.  Adds a click event listener to the disAutoRefreshBtn which will invoke the disAutoRefresh function.  
       This will stop the auto quote refresh every, disable the disAutoRefresh and enable the enaAutoRefreshBtn buttons respectively.
 */
-disableEnableBtns(disAutoRefreshBtn, enaAutoRefreshBtn);  // 
+disableEnableBtns(disAutoRefreshBtn, enaAutoRefreshBtn);  // disable the auto disable auto refresh button during the initial page load.
+printQuote();  // print an inital quote
 loadQuoteBtn.addEventListener('click', printQuote, false);
 enaAutoRefreshBtn.addEventListener('click', enaAutoRefresh, false); 
 disAutoRefreshBtn.addEventListener('click', disAutoRefresh, false);
